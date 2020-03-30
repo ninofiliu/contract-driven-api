@@ -7,12 +7,4 @@ Vue.config.productionTip = false;
   render: (h) => h(App),
 })).$mount('#root');
 
-const api = createApi('http://my.origin.com');
-
-(async () => {
-  const result = await api.post('/auth/signup', {
-    username: 'john',
-    password: 'pwd123',
-  });
-  console.log({ result });
-})();
+const api = createApi('http://localhost:8081');
