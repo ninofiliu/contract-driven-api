@@ -1,4 +1,4 @@
-import defaultcaller from './default.caller';
+import defaultcaller from './default';
 
 export default {
   default: defaultcaller,

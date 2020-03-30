@@ -1,4 +1,5 @@
 import Ajv from 'ajv';
+import ValidationError from './ValidationError';
 
 const ajv = new Ajv();
 
@@ -12,7 +13,7 @@ export default {
     const validate = ajv.compile(schema);
     return async (data) => {
       if (!validate(data)) {
-        throw new Error(`Validation error ${path} ${validate.errors}`);
+        throw new ValidationError(path, data, schema, validate.errors);
       }
       const resp = await fetch(origin + path);
       const json = await resp.json();
