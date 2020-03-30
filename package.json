@@ -1,7 +1,7 @@
 {
   "scripts": {
     "client": "webpack-dev-server --config client/webpack.config.js",
-    "server": "nodemon server/main.js --watch server",
+    "server": "nodemon server/main.js --watch server --watch api --ignore server/db.json",
     "start": "concurrently -c 'blue,green' 'npm:client' 'npm:server'"
   },
   "devDependencies": {
@@ -21,6 +21,8 @@
   },
   "dependencies": {
     "ajv": "^6.12.0",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "lowdb": "^1.0.0",
     "vue": "^2.6.11"
