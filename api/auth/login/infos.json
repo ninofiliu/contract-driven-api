@@ -1,5 +1,5 @@
 {
-  "type": "default",
+  "type": "post-default",
   "errors": {
     "wrong": "The username or the password is not correct"
   }

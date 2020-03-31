@@ -1,5 +1,5 @@
 {
-  "type": "default",
+  "type": "post-default",
   "errors": {
     "userExists": "A user with the same username already exists"
   }
