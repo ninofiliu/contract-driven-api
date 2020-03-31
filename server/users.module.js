@@ -1,8 +1,11 @@
 const db = require('./db');
 
 module.exports = {
-  exists(username) {
-    const found = db.get('users').find((user) => user.username === username).value();
+  exists(partialUser) {
+    const found = db.get('users')
+      .find((user) => !partialUser.username || partialUser.username === user.username)
+      .find((user) => !partialUser.password || partialUser.password === user.password)
+      .value();
     return !!found;
   },
   add(user) {
