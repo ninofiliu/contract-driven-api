@@ -22,7 +22,10 @@ export default {
   methods: {
     async submit() {
       try {
-        const { error } = await api.post('/auth/signup', { username: this.username, password: this.password });
+        const { error } = await api.post('/auth/signup', {
+          username: this.username,
+          password: this.password,
+        });
         if (error) return this.message = error;
         this.message = 'Successful signup';
       } catch (e) {

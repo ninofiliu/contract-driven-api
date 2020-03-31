@@ -1,15 +1,15 @@
 <template>
   <form @submit.prevent="submit">
     <div v-if="message">{{ message }}</div>
-    <div><input v-model="username" placeholder="username"></div>
-    <div><input v-model="password" placeholder="password"></div>
-    <div><button type="submit">[login]</button></div>
+    <div><input v-model="username" placeholder="Username"></div>
+    <div><input v-model="password" placeholder="Password"></div>
+    <div><button type="submit">[Login]</button></div>
   </form>
 </template>
 
 <script>
-// import api from '../api';
-// import ValidationError from '../api/ValidationError';
+import { mapMutations } from 'vuex';
+import api from '../api';
 
 export default {
   data() {
@@ -20,8 +20,14 @@ export default {
     };
   },
   methods: {
-    submit() {
-      // TODO
+    ...mapMutations(['setLoggedIn']),
+    async submit() {
+      const { error } = await api.post('/auth/login', {
+        username: this.username,
+        password: this.password,
+      });
+      if (error) return this.message = error;
+      this.setLoggedIn(true);
     },
   },
 };
