@@ -3,6 +3,7 @@ env:
   es6: true
   node: true
 extends:
+  - 'plugin:vue/essential'
   - airbnb-base
 globals:
   Atomics: readonly
@@ -10,6 +11,10 @@ globals:
 parserOptions:
   ecmaVersion: 2018
   sourceType: module
+plugins:
+  - vue
 rules:
+  consistent-return: off
   no-console: off
+  no-return-assign: off
   object-curly-newline: off
