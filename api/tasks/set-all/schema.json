@@ -6,7 +6,7 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["status", "name"],
+        "required": ["done", "name"],
         "properties": {
           "status": {
             "type": "boolean"

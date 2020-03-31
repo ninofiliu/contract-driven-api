@@ -1,4 +1,4 @@
 {
-  "type": "authenticated-get",
+  "type": "post-authenticated",
   "errors": []
 }

@@ -5,6 +5,7 @@ import auth_signup_infos from '../../api/auth/signup/infos.json';
 import auth_signup_schema from '../../api/auth/signup/schema.json';
 import tasks_getAll_infos from '../../api/tasks/get-all/infos.json';
 import tasks_setAll_infos from '../../api/tasks/set-all/infos.json';
+import tasks_setAll_schema from '../../api/tasks/set-all/schema.json';
 
 export default {
   '/auth/login': {
@@ -20,5 +21,6 @@ export default {
   },
   '/tasks/set-all': {
     infos: tasks_setAll_infos,
+    schema: tasks_setAll_schema,
   },
 };

@@ -1,5 +1,6 @@
 <template>
   <div>
+    <button @click="push" :disabled="saved">[save]</button>
     <div
       v-for="task of tasks"
       :key="task.key"
@@ -15,32 +16,37 @@
 </template>
 
 <script>
-// import api from '../api';
+import api from '../api';
 
 export default {
   data() {
     return {
-      tasks: [
-        { key: 0, done: false, name: 'Foo' },
-        { key: 0, done: true, name: 'Bar' },
-      ],
+      tasks: [],
       newTaskName: '',
+      saved: true,
     };
   },
-  // async created() {
-  //   await this.pull();
-  // },
+  async created() {
+    await this.pull();
+  },
   methods: {
-    // async pull() {
-    //   const { tasks } = await api('/tasks/get-all');
-    //   this.tasks = tasks.map((task, i) => ({ ...task, key: i }));
-    // },
+    async pull() {
+      const { tasks } = await api('/tasks/get-all');
+      this.tasks = tasks.map((task, i) => ({ ...task, key: i }));
+      this.saved = true;
+    },
+    async push() {
+      const tasks = this.tasks.map((task) => ({ done: task.done, name: task.name }));
+      await api('/tasks/set-all', { tasks });
+      this.saved = true;
+    },
     addTask() {
       const key = this.tasks.length
         ? this.tasks[this.tasks.length - 1].key + 1
         : 0;
       this.tasks.push({ key, done: false, name: this.newTaskName });
       this.newTaskName = '';
+      this.saved = false;
     },
   },
 };

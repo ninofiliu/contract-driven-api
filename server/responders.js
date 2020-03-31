@@ -3,6 +3,14 @@ const wrap = require('./middlewares/wrap');
 const authenticate = require('./middlewares/authenticate');
 
 module.exports = {
+  'post-authenticated': (router, { path, infos, controller, schema }) => {
+    router.post(
+      path,
+      authenticate,
+      validate(schema),
+      wrap(controller, infos.errors),
+    );
+  },
   'post-default': (router, { path, infos, controller, schema }) => {
     router.post(
       path,
