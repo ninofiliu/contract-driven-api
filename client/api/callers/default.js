@@ -15,7 +15,11 @@ export default {
       if (!validate(data)) {
         throw new ValidationError(path, data, schema, validate.errors);
       }
-      const resp = await fetch(origin + path);
+      const resp = await fetch(origin + path, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
       const json = await resp.json();
       return json;
     };
