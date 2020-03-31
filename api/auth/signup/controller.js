@@ -1,10 +1,10 @@
-const users = require('../../../server/modules/users');
+const usersModule = require('../../../server/modules/users');
 const { errors } = require('./infos');
 
 module.exports = async (newUser) => {
-  if (await users.exists({ username: newUser.username })) {
+  if (await usersModule.exists({ username: newUser.username })) {
     throw new Error(errors.userExists);
   }
-  await users.add(newUser);
+  await usersModule.add(newUser);
   return {};
 };
