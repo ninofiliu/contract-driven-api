@@ -22,7 +22,7 @@ export default {
   methods: {
     ...mapMutations(['setLoggedIn']),
     async submit() {
-      const { error } = await api.post('/auth/login', {
+      const { error } = await api('/auth/login', {
         username: this.username,
         password: this.password,
       });
