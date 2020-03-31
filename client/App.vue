@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="loggedIn">(not implemented yet)</div>
+    <div v-if="token">(not implemented yet)</div>
     <Join v-else/>
   </div>
 </template>
@@ -14,7 +14,7 @@ export default {
     Join,
   },
   computed: {
-    ...mapState(['loggedIn']),
+    ...mapState(['token']),
   },
 };
 </script>

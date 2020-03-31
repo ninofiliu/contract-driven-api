@@ -1,11 +1,13 @@
 import Ajv from 'ajv';
 import ValidationError from './ValidationError';
+import store from '../store';
 
 const ajv = new Ajv();
 
 export default (origin) => ({
   'get-authenticated': async ({ path, authorizedErrors }) => {
-    const headers = { 'Authentication': 'ssshhh' };
+    const { token } = store.state;
+    const headers = { 'Authorization': token };
     const resp = await fetch(origin + path, { headers });
     const json = await resp.json();
     if (json.error && !authorizedErrors.includes(json.error)) {

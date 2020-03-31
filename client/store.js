@@ -6,11 +6,11 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    loggedIn: false,
+    token: null,
   },
   mutations: {
-    setLoggedIn(state, value) {
-      state.loggedIn = value;
+    setToken(state, token) {
+      state.token = token;
     },
   },
 });

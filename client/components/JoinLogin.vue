@@ -20,14 +20,14 @@ export default {
     };
   },
   methods: {
-    ...mapMutations(['setLoggedIn']),
+    ...mapMutations(['setToken']),
     async submit() {
-      const { error } = await api('/auth/login', {
+      const { error, token } = await api('/auth/login', {
         username: this.username,
         password: this.password,
       });
       if (error) return this.message = error;
-      this.setLoggedIn(true);
+      this.setToken(token);
     },
   },
 };
