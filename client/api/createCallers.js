@@ -1,10 +1,30 @@
+import Ajv from 'ajv';
+import ValidationError from './ValidationError';
+
+const ajv = new Ajv();
+
 export default (origin) => ({
   'get-authenticated': async ({ path, authorizedErrors }) => {
     const headers = { 'Authentication': 'ssshhh' };
     const resp = await fetch(origin + path, { headers });
-    const { error } = await resp.json();
-    if (!authorizedErrors.includes(error)) {
-      throw new Error(`Unexpected server error: ${error}`);
+    const json = await resp.json();
+    if (!authorizedErrors.includes(json.error)) {
+      throw new Error(`Unexpected server error: ${json.error}`);
     }
+    return json;
+  },
+  'post-default': async ({ path, data, schema, authorizedErrors }) => {
+    const valid = ajv.validate(schema, data);
+    if (!valid) throw new ValidationError(path, data, schema, ajv.errors);
+    const resp = await fetch(origin + path, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
+    const json = await resp.json();
+    if (!authorizedErrors.includes(json.error)) {
+      throw new Error(`Unexpected server error: ${json.error}`);
+    }
+    return json;
   },
 });
