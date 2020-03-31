@@ -1,5 +1,5 @@
 const users = require('../../../server/modules/users');
-const { errors } = require('./post.infos');
+const { errors } = require('./infos');
 
 module.exports = async (newUser) => {
   if (await users.exists({ username: newUser.username })) {

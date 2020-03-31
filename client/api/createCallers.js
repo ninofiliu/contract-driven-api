@@ -8,7 +8,7 @@ export default (origin) => ({
     const headers = { 'Authentication': 'ssshhh' };
     const resp = await fetch(origin + path, { headers });
     const json = await resp.json();
-    if (!authorizedErrors.includes(json.error)) {
+    if (json.error && !authorizedErrors.includes(json.error)) {
       throw new Error(`Unexpected server error: ${json.error}`);
     }
     return json;
@@ -22,7 +22,7 @@ export default (origin) => ({
       body: JSON.stringify(data),
     });
     const json = await resp.json();
-    if (!authorizedErrors.includes(json.error)) {
+    if (json.error && !authorizedErrors.includes(json.error)) {
       throw new Error(`Unexpected server error: ${json.error}`);
     }
     return json;
