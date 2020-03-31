@@ -1,5 +1,5 @@
-import create from './create';
+import createApi from './createApi';
 
 const ORIGIN = 'http://localhost:8081';
 
-export default create(ORIGIN);
+export default createApi(ORIGIN);
