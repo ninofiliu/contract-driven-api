@@ -1,23 +1,20 @@
 /* eslint-disable global-require */
 module.exports = [
   {
-    method: 'get',
     path: '/tasks/get-all',
-    controller: require('../api/tasks/get-all/get.controller'),
-    infos: require('../api/tasks/get-all/get.infos.json'),
+    infos: require('../api/tasks/get-all/infos.json'),
+    controller: require('../api/tasks/get-all/controller'),
   },
   {
-    method: 'post',
     path: '/auth/login',
-    controller: require('../api/auth/login/post.controller'),
-    infos: require('../api/auth/login/post.infos.json'),
-    schema: require('../api/auth/login/post.schema.json'),
+    infos: require('../api/auth/login/infos.json'),
+    controller: require('../api/auth/login/controller'),
+    schema: require('../api/auth/login/schema.json'),
   },
   {
-    method: 'post',
     path: '/auth/signup',
-    controller: require('../api/auth/signup/post.controller'),
-    infos: require('../api/auth/signup/post.infos.json'),
-    schema: require('../api/auth/signup/post.schema.json'),
+    infos: require('../api/auth/signup/infos.json'),
+    controller: require('../api/auth/signup/controller'),
+    schema: require('../api/auth/signup/schema.json'),
   },
 ];
