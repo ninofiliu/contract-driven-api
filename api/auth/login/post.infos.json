@@ -1,0 +1,6 @@
+{
+  "type": "default",
+  "errors": {
+    "wrong": "The username or the password is not correct"
+  }
+}

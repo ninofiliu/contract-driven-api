@@ -7,4 +7,11 @@ module.exports = [
     infos: require('../api/auth/signup/post.infos.json'),
     schema: require('../api/auth/signup/post.schema.json'),
   },
+  {
+    method: 'post',
+    path: '/auth/login',
+    controller: require('../api/auth/login/post.controller'),
+    infos: require('../api/auth/login/post.infos.json'),
+    schema: require('../api/auth/login/post.schema.json'),
+  },
 ];
