@@ -1,4 +1,4 @@
-const users = require('../../../server/users.module');
+const users = require('../../../server/modules/users');
 const { errors } = require('./post.infos');
 
 module.exports = async (user) => {
