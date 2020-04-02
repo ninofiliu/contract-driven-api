@@ -1,5 +1,8 @@
 {
   "scripts": {
+    "build/client": "node client/api/routes.builder.js",
+    "build/server": "node server/routes.builder.js",
+    "build": "npm run build/client && npm run build/server",
     "client": "webpack-dev-server --config client/webpack.config.js",
     "server": "nodemon server/main.js --watch server --watch api --ignore server/db.json",
     "start": "concurrently -c 'blue,green' 'npm:client' 'npm:server'"

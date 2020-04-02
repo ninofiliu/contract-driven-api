@@ -60,5 +60,6 @@ Run locally:
 git clone git@github.com:ninofiliu/contract-driven-api
 cd contract-driven-api
 npm install
-npm start
+npm run build
+npm run start
 ```

@@ -1,2 +1,4 @@
+client/api/routes.js
 node_modules
 server/db.json
+server/routes.js
