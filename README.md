@@ -36,23 +36,22 @@ The types of HTTP exchanges are:
 
 The pattern code components described above can be found as follow:
 
-- API contract: [./api/*](./api)
-  - Which routes exist?
-    - The file system maps the API
-    - `infos.json` defines the type of the route
-  - How do routes behave?
-    - `controller.js` defines it
-    - No need for docs, controllers should read as english, implementation details should live inside [./server](./server)
-  - How does input looks like?
-    - `schema.json` defines the shape of the optional payload
-  - How does output looks like
-    - `infos.json` defines the possible errors
-- Client callers: [./client/api/createCallers.js](./client/api/createCallers.js)
-- Server responders: [./server/responders.js](./server/responders.js)
-- Client `api` object: [./client/api/index.js](./client/api/index.js)
-- Server `router` object: [./server/router.js](./server/router.js)
+- API contract: [./contract/*](./api)
+  - Uses an OpenAPI spec file to document
+    - Which route exists
+    - Schema for input and output
+    - Possible errors
+  - Controllers, in [./contract/controllers](./contract/controllers) are code, but they should read as english, as all implementation details are hidden in [./server](./server). No need to maintain docs that explain what routes do!
+- Client callers: [./client/callers.js](./client/callers.js)
+- Server responders: [server/responders/index.js](./server/responders/index.js)
+- Client `api` object: [./client/api.js](./client/api.js)
+- Server `router` object: transparently observable in [./server/main.js](./server/main.js)
 
-Stack: [Vue](https://vuejs.org/) + [Express](https://expressjs.com/) + [LowDB](https://github.com/typicode/lowdb)
+Stack:
+- [oa-client](https://github.com/ninofiliu/oa-client) (other project of the author!) to create the client api object
+- [Vue](https://vuejs.org/)
+- Pure [Node](https://nodejs.org/)
+- [LowDB](https://github.com/typicode/lowdb)
 
 Run locally:
 
