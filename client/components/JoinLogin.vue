@@ -22,9 +22,11 @@ export default {
   methods: {
     ...mapMutations(['setToken']),
     async submit() {
-      const { error, token } = await api('/auth/login', {
-        username: this.username,
-        password: this.password,
+      const { error, token } = await api.post('/auth/login', {
+        body: {
+          username: this.username,
+          password: this.password,
+        },
       });
       if (error) return this.message = error;
       this.setToken(token);

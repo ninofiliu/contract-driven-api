@@ -1,9 +1,8 @@
-const usersModule = require('../../../server/modules/users');
-const { errors } = require('./infos');
+const usersModule = require('../../../../server/modules/users');
 
 module.exports = async (newUser) => {
   if (await usersModule.exists((u) => u.username === newUser.username)) {
-    throw new Error(errors.userExists);
+    throw new Error('userExists');
   }
   await usersModule.add(newUser);
   return {};

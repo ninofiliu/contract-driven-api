@@ -31,13 +31,15 @@ export default {
   },
   methods: {
     async pull() {
-      const { tasks } = await api('/tasks/get-all');
+      const tasks = await api.get('/tasks');
       this.tasks = tasks.map((task, i) => ({ ...task, key: i }));
       this.saved = true;
     },
     async push() {
       const tasks = this.tasks.map((task) => ({ done: task.done, name: task.name }));
-      await api('/tasks/set-all', { tasks });
+      await api.put('/tasks', {
+        body: tasks,
+      });
       this.saved = true;
     },
     addTask() {

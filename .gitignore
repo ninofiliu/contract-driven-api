@@ -1,4 +1,4 @@
 client/api/routes.js
 node_modules
+contract/specs.json
 server/db.json
-server/routes.js

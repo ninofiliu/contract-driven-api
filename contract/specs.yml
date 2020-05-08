@@ -1,0 +1,106 @@
+openapi: 3.0.0
+info:
+  title: Contract-driven API
+  version: 0.0.0
+paths:
+  /auth/login:
+    post:
+      x-type: default-post
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Credentials'
+      responses:
+        200:
+          description: Logs a user in
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - type: object
+                    required:
+                      - error
+                    properties:
+                      error:
+                        enum:
+                          - wrong
+                  - type: object
+                    required:
+                      - token
+                    properties:
+                      token: string
+  /auth/signup:
+    post:
+      x-type: default-post
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Credentials'
+      responses:
+        200:
+          description: If they doesn't exist yet, creates a user
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - type: object
+                    properties:
+                      error:
+                        enum:
+                          - userExists
+                  - type: object
+  /tasks:
+    get:
+      x-type: authenticated-get
+      responses:
+        200:
+          description: Get all tasks
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tasks'
+    put:
+      x-type: authenticated-put
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Tasks'
+      responses:
+        200:
+          description: Replace all tasks
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  schemas:
+    Credentials:
+      type: object
+      required:
+        - username
+        - password
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+    Task:
+      type: object
+      required:
+        - done
+        - name
+      properties:
+        done:
+          type: boolean
+        name:
+          type: string
+    Tasks:
+      type: array
+      items:
+        $ref: '#/components/schemas/Task'

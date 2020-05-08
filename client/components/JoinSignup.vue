@@ -9,7 +9,6 @@
 
 <script>
 import api from '../api';
-import ValidationError from '../api/ValidationError';
 
 export default {
   data() {
@@ -21,17 +20,14 @@ export default {
   },
   methods: {
     async submit() {
-      try {
-        const { error } = await api('/auth/signup', {
+      const { error } = await api.post('/auth/signup', {
+        body: {
           username: this.username,
           password: this.password,
-        });
-        if (error) return this.message = error;
-        this.message = 'Successful signup';
-      } catch (e) {
-        if (e instanceof ValidationError) return this.message = 'Password must be > 4 char';
-        throw e;
-      }
+        },
+      });
+      if (error) return this.message = error;
+      this.message = 'Successful signup';
     },
   },
 };

@@ -1,3 +1,3 @@
 const tasksModule = require('../../../server/modules/tasks');
 
-module.exports = async () => ({ tasks: tasksModule.get() });
+module.exports = async () => tasksModule.get();
